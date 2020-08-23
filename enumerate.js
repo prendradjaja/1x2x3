@@ -7,9 +7,7 @@ function bfs(root) {
   const q = [];
   solutions[root.id_()] = '';
   q.push({ puzzle: root, path: [] })
-  while (q.length
-    // && Object.keys(solutions) < 43
-  ) {
+  while (q.length) {
     let path;
     ({ puzzle, path } = q.shift());
     for (let neighbor of neighbors(puzzle)) {
