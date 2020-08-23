@@ -27,6 +27,7 @@ class Puzzle {
     // EO is defined as:
     // - Orange: WhiteF in P0, YellowF in P1
     // - Red: WhiteF in P1, YellowF in P0
+    // This means that the slice move 'E2' preserves EO.
 
     // All possible CP/EO/EO combinations for this puzzle are solvable.
   }
