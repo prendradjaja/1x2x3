@@ -2,12 +2,17 @@
 // suffix_ = extensions beyond what cubejs has
 
 class Puzzle {
-  constructor() {
-    // Not necessarily compatible with cubejs
-    this._cp = [0, 1, 2, 3];
-    // No CO
-    this._ep = [0, 1];
-    this._eo = [0, 0];
+  constructor(state) {
+    if (!state) {
+      this._cp = [0, 1, 2, 3];
+      // No CO
+      this._ep = [0, 1];
+      this._eo = [0, 0];
+    } else {
+      this._cp = state.cp;
+      this._ep = state.ep;
+      this._eo = state.eo;
+    }
 
     // Solved state is pictured as:
     // - F = White
@@ -51,8 +56,20 @@ class Puzzle {
     }
   }
 
+  toJSON() {
+    return {
+      cp: this._cp,
+      ep: this._ep,
+      eo: this._eo,
+    };
+  }
+
   move(alg) {
     alg.split(' ').forEach(m => this._move(m));
+  }
+
+  clone() {
+    return new Cube(this.toJSON());
   }
 
   display_() {
