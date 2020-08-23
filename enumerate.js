@@ -33,4 +33,4 @@ function* neighbors(puzzle) {
 }
 
 bfs(new Puzzle());
-console.log(JSON.stringify(solutions, null, 2));
+console.log('const cases =', JSON.stringify(solutions, null, 2));
