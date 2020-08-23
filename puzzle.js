@@ -71,7 +71,9 @@ class Puzzle {
   }
 
   move(alg) {
-    alg.split(' ').forEach(m => this._move(m));
+    if (alg) {
+      alg.split(' ').forEach(m => this._move(m));
+    }
     return this;
   }
 
