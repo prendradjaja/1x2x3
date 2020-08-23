@@ -61,7 +61,7 @@ class Puzzle {
 
   isSolved() {
     throw new Error("Not implemented yet"); // TODO
-    // Need to handle the "fresh" state as well as each of x2, y2, z2 (and that's it)
+    // Rotate so C0 is in P0, check against initial state, then unrotate
   }
 }
 
