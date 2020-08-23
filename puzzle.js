@@ -120,3 +120,5 @@ class Puzzle {
 function permute(arr, indices) {
   return indices.map(i => arr[i]);
 }
+
+module.exports = Puzzle;
