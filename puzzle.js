@@ -50,6 +50,12 @@ class Puzzle {
       this._eo[1] = +!this._eo[1];
     } else if (m === 'E2') {
       this._ep = permute(this._ep, [1, 0]);
+    } else if (m === 'x2') {
+      this.move('R2 L2');
+    } else if (m === 'y2') {
+      this.move('U2 E2 D2');
+    } else if (m === 'z2') {
+      this.move('x2 y2');
     } else {
       // TODO Does cubejs throw errors?
       throw new Error("Invalid move: " + m);
@@ -80,6 +86,11 @@ class Puzzle {
   isSolved() {
     throw new Error("Not implemented yet"); // TODO
     // Rotate so C0 is in P0, check against initial state, then unrotate
+  }
+
+  static inverse(alg) {
+    // Each move is its own inverse, so no need to invert individual moves
+    return alg.split(' ').reverse();
   }
 }
 
