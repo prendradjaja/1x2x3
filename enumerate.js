@@ -13,7 +13,7 @@ function bfs(root) {
     let path;
     ({ puzzle, path } = q.shift());
     for (let neighbor of neighbors(puzzle)) {
-      if (!solutions[neighbor.node.id_()]) {
+      if (solutions[neighbor.node.id_()] == null) {
         const newPath = [...path, neighbor.move];
         solutions[neighbor.node.id_()] = [...newPath].reverse().join(' ');
         q.push({
