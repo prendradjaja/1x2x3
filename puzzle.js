@@ -72,6 +72,7 @@ class Puzzle {
 
   move(alg) {
     alg.split(' ').forEach(m => this._move(m));
+    return this;
   }
 
   clone() {
@@ -97,16 +98,13 @@ class Puzzle {
   standardRotation_() {
     const currentIndex = this._cp.indexOf(0);
     if (currentIndex === 0) {
-      return;
+      return this;
     } else if (currentIndex === 1) {
-      this.move('y2');
-      return;
+      return this.move('y2');
     } else if (currentIndex === 2) {
-      this.move('x2');
-      return;
+      return this.move('x2');
     } else if (currentIndex === 3) {
-      this.move('z2');
-      return;
+      return this.move('z2');
     }
   }
 
