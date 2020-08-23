@@ -92,6 +92,31 @@ class Puzzle {
     // Each move is its own inverse, so no need to invert individual moves
     return alg.split(' ').reverse();
   }
+
+  // (In-place) Rotate the puzzle so corner 0 is in position 0.
+  standardRotation_() {
+    const currentIndex = this._cp.indexOf(0);
+    if (currentIndex === 0) {
+      return;
+    } else if (currentIndex === 1) {
+      this.move('y2');
+      return;
+    } else if (currentIndex === 2) {
+      this.move('x2');
+      return;
+    } else if (currentIndex === 3) {
+      this.move('z2');
+      return;
+    }
+  }
+
+  id_() {
+    const puzzle = this.clone().standardRotation_();
+    const cp = puzzle._cp.join('');
+    const ep = puzzle._ep.join('');
+    const eo = puzzle._eo.join('');
+    return cp + '.' + ep + '.' + eo;
+  }
 }
 
 function permute(arr, indices) {
