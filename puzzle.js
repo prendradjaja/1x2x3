@@ -82,8 +82,61 @@ class Puzzle {
   }
 
   display_() {
-    throw new Error("Not implemented yet"); // TODO
-    // Only need to show three sides
+    const f = [
+      this._displayCornerFront(0),
+      this._displayCornerFront(1),
+      this._displayEdgeFront(0),
+      this._displayEdgeFront(1),
+      this._displayCornerFront(2),
+      this._displayCornerFront(3),
+    ].join('');
+
+    const r = [
+      this._displayCornerRight(1),
+      this._displayEdgeRight(1),
+      this._displayCornerRight(3),
+    ].join('');
+
+    const u = [
+      this._displayCornerUp(0),
+      this._displayCornerUp(1),
+    ].join('');
+    return { f, u, r };
+  }
+
+  _displayCornerFront(i) {
+    const c = this._cp[i];
+    let isWhite = false;
+    if (i === 0 || i === 3) {
+      isWhite = c === 0 || c === 3;
+    } else {
+      isWhite = c === 1 || c === 2;
+    }
+    return isWhite ? 'U' : 'D'; // TODO change to F and make keycube do the mapping
+  }
+
+  _displayEdgeFront(i) {
+    const e = this._ep[i];
+    const o = this._eo[i];
+    return !(e ^ o ^ i) ? 'U' : 'D';
+  }
+
+  _displayCornerUp(i) {
+    const fromTop = i < 2;
+    const atTop = this._cp[i] < 2;
+    return (fromTop & atTop) ? 'B' : 'F';
+  }
+
+  _displayCornerRight(i) {
+    const c = this._cp[i];
+    const fromRight = isOdd(c);
+    return fromRight ? 'R' : 'L';
+  }
+
+  _displayEdgeRight(i) {
+    const e = this._ep[i];
+    const fromRight = e === 1;
+    return fromRight ? 'R' : 'L';
   }
 
   isSolved() {
@@ -126,6 +179,14 @@ class Puzzle {
 
 function permute(arr, indices) {
   return indices.map(i => arr[i]);
+}
+
+function isEven(n) {
+  return n % 2 === 0;
+}
+
+function isOdd(n) {
+  return !isEven(n);
 }
 
 module.exports = Puzzle;
