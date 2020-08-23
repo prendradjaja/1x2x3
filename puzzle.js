@@ -9,9 +9,9 @@ class Puzzle {
       this._ep = [0, 1];
       this._eo = [0, 0];
     } else {
-      this._cp = state.cp;
-      this._ep = state.ep;
-      this._eo = state.eo;
+      this._cp = [...state.cp];
+      this._ep = [...state.ep];
+      this._eo = [...state.eo];
     }
 
     // Solved state is pictured as:
@@ -64,9 +64,9 @@ class Puzzle {
 
   toJSON() {
     return {
-      cp: this._cp,
-      ep: this._ep,
-      eo: this._eo,
+      cp: [...this._cp],
+      ep: [...this._ep],
+      eo: [...this._eo],
     };
   }
 
