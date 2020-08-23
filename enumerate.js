@@ -12,7 +12,6 @@ function bfs(root) {
   ) {
     let path;
     ({ puzzle, path } = q.shift());
-    console.log(puzzle.id_());
     for (let neighbor of neighbors(puzzle)) {
       if (!solutions[neighbor.node.id_()]) {
         const newPath = [...path, neighbor.move];
