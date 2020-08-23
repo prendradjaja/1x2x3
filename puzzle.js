@@ -75,7 +75,7 @@ class Puzzle {
   }
 
   clone() {
-    return new Cube(this.toJSON());
+    return new Puzzle(this.toJSON());
   }
 
   display_() {
