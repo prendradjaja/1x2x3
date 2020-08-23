@@ -9,9 +9,9 @@ class Puzzle {
       this._ep = [0, 1];
       this._eo = [0, 0];
     } else {
-      this._cp = state.cp;
-      this._ep = state.ep;
-      this._eo = state.eo;
+      this._cp = [...state.cp];
+      this._ep = [...state.ep];
+      this._eo = [...state.eo];
     }
 
     // Solved state is pictured as:
@@ -64,14 +64,16 @@ class Puzzle {
 
   toJSON() {
     return {
-      cp: this._cp,
-      ep: this._ep,
-      eo: this._eo,
+      cp: [...this._cp],
+      ep: [...this._ep],
+      eo: [...this._eo],
     };
   }
 
   move(alg) {
-    alg.split(' ').forEach(m => this._move(m));
+    if (alg) {
+      alg.split(' ').forEach(m => this._move(m));
+    }
     return this;
   }
 
@@ -96,15 +98,20 @@ class Puzzle {
 
   // (In-place) Rotate the puzzle so corner 0 is in position 0.
   standardRotation_() {
+    return this.move(this.getStandardRotation_());
+  }
+
+  // Return the rotation that would move corner 0 to position 0.
+  getStandardRotation_() {
     const currentIndex = this._cp.indexOf(0);
     if (currentIndex === 0) {
-      return this;
+      return '';
     } else if (currentIndex === 1) {
-      return this.move('y2');
+      return 'y2';
     } else if (currentIndex === 2) {
-      return this.move('x2');
+      return 'x2';
     } else if (currentIndex === 3) {
-      return this.move('z2');
+      return 'z2';
     }
   }
 
