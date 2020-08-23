@@ -7,14 +7,11 @@ function bfs(root) {
   const q = [];
   solutions[root.id_()] = '';
   q.push({ puzzle: root, path: [] })
-  while (q.length
-    // && Object.keys(solutions) < 43
-  ) {
+  while (q.length) {
     let path;
     ({ puzzle, path } = q.shift());
-    console.log(puzzle.id_());
     for (let neighbor of neighbors(puzzle)) {
-      if (!solutions[neighbor.node.id_()]) {
+      if (solutions[neighbor.node.id_()] == null) {
         const newPath = [...path, neighbor.move];
         solutions[neighbor.node.id_()] = [...newPath].reverse().join(' ');
         q.push({
